@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.cardss {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  margin-top: 66px;
+  margin-right: 70px;
+  margin-left: 70px;
+  margin-bottom: 66px;
+}
+.stylcard {
+  margin-bottom: 80px;
+}

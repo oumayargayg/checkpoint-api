@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import NavBar from './Components/NavBar';
+import UserList from './Components/UserList';
+import Admin from './Pages/Admin';
+import Error from './Pages/Error';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Profile from './Pages/Profile';
+import PrivateRoute from './Routes/PrivateRoute';
+
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      <h1> API Workshop </h1>
+      <Routes>
+        <Route exact path='/' element={<Home/>} />
+        <Route exact path='/users' element={<UserList/>} />
+        <Route exact path='/user/:id' element={<Profile/>} />
+        <Route exact path='/login' element={<Login/>} />
+        <Route path='/admin' element={<PrivateRoute isAuth={isAuth}/>} > 
+          <Route exact path='/admin' element={<Admin/>} />
+        </Route>
+
+        <Route exact path='/*' element={<Error/>} />
+      </Routes>
     </div>
   );
 }
